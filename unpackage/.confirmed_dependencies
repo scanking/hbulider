@@ -3,13 +3,15 @@
     "refer": [
       "plus/audio.html",
       "plus/accelerometer.html",
-      "plus/barcode.html"
+      "plus/barcode.html",
+      "about.html"
     ],
     "resources": []
   },
   "plus/barcode.html": {
     "refer": [
       "plus/barcode_scan.html"
-    ]
+    ],
+    "resources": []
   }
 }
