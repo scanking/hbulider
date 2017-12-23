@@ -1,1 +1,15 @@
-null
+{
+  "index.html": {
+    "refer": [
+      "plus/audio.html",
+      "plus/accelerometer.html",
+      "plus/barcode.html"
+    ],
+    "resources": []
+  },
+  "plus/barcode.html": {
+    "refer": [
+      "plus/barcode_scan.html"
+    ]
+  }
+}
