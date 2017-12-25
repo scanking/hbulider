@@ -18,7 +18,7 @@
 	</buildSpec>
 	<natures>
 		<nature>com.pandora.projects.ui.MKeyNature</nature>
-		<nature>com.aptana.projects.webnature</nature>
+		<nature>com.pandora.projects.ui.Wap2AppNature</nature>
 	</natures>
 	<filteredResources>
 		<filter>
@@ -37,6 +37,15 @@
 						<arguments>1.0-projectRelativePath-matches-false-false-setting</arguments>
 					</matcher>
 				</arguments>
+			</matcher>
+		</filter>
+		<filter>
+			<id>1514013302136</id>
+			<name></name>
+			<type>26</type>
+			<matcher>
+				<id>org.eclipse.ui.ide.multiFilter</id>
+				<arguments>1.0-name-matches-false-false-node_modules</arguments>
 			</matcher>
 		</filter>
 	</filteredResources>
