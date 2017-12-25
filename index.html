@@ -10,26 +10,20 @@
 	<title>酷站典</title>
 	<link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
 	<link rel="stylesheet" href="css/mui.css" type="text/css" charset="utf-8" />
-	
+
 </head>
 
 <body>
+	<script src="js/mui.min.js"></script>
+	<script type="text/javascript">
+		mui.init({
+			subpages: [{
+				url: 'home.html',
+				id: 'home.html',
+			}]
+		})
+	</script>
 
-<script type="text/javascript" charset="utf-8">
-	//取消浏览器的所有事件，使得active的样式在手机上正常生效
-	mui.init({
-		subpages: [{
-			url: 'home.html',
-			id: 'list.html',
-			styles: {
-				top: '45px', //mui标题栏默认高度为45px；
-				bottom: '0px' //默认为0px，可不定义；
-			}
-		}]
-	});
-</script>
-<script type="text/javascript" src="js/mui.js"></script>
 </body>
-
 
 </html>
