@@ -1,55 +1,135 @@
 <!doctype html>
 <html>
 
-<head>
-	<meta charset="utf-8">
-	<title></title>
-	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-	<link href="css/mui.css" rel="stylesheet" />
-</head>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.css" rel="stylesheet" />
+		<link href="css/font-awesome.min.css" rel="stylesheet" />
+	</head>
 
-<body>
-	<div>
-		<ul class="mui-table-view mui-grid-view mui-grid-9">
-			<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-				<a href="#">
-					<span class="mui-icon"><img src="icon.png"/></span>
-					<div class="mui-media-body">aaa</div>
-				</a>
-			</li>
-			<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-				<a href="#">
-					<span class="mui-icon"><img src="icon.png"/></span>
-					<div class="mui-media-body">aaa</div>
-				</a>
-			</li>
-			<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-				<a href="#">
-					<span class="mui-icon"><img src="icon.png"/></span>
-					<div class="mui-media-body">aaa</div>
-				</a>
-			</li>
-			<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-				<a href="#">
-					<span class="mui-icon"><img src="icon.png"/></span>
-					<div class="mui-media-body">aaa</div>
-				</a>
-			</li>
+	<body>
+		<div>
+			<div id="touch" style="width: 50px; height: 50px; position: absolute;">
+                <img id="simple-menu" src="images/search.png" style="width: 50px; height: 50px;" />
+            </div>
+			<ul class="mui-table-view mui-grid-view mui-grid-9">
+				<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3" style="position: relative;">
+					<a href="#">
+						<span class="mui-icon"><img src="icon.png"/></span>
+						<div class="mui-media-body">aaa1</div>
+					</a>
+					
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+					<a href="#">
+						<span class="mui-icon"><img src="icon.png"/></span>
+						<div class="mui-media-body">aaa2</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+					<a href="#">
+						<span class="mui-icon"><img src="icon.png"/></span>
+						<div class="mui-media-body">aaa3</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+					<a href="#">
+						<span class="mui-icon"><img src="icon.png"/></span>
+						<div class="mui-media-body">aaa4</div>
+					</a>
+				</li>
 
-		</ul>
-	</div>
-	<script src="js/mui.min.js"></script>
-	<script type="text/javascript">
-		mui.init();
-		mui.plusReady(function() {
-			mui.getJSON('http://www.kuzhandian.com/index.php?m=content&c=index&a=ajax_index', {
-				category: 'news'
-			}, function(data) {
-				mui.toast(111)
+			</ul>
+		</div>
+		<style>
+            #touch {
+                width: 50px;
+                height: 50px;
+                position: absolute;
+                left: 100px;
+                top: 200px;
+                margin-left: -30px;
+                margin-top: -30px;
+                z-index: 999999;
+            }
+
+            #simple-menu {
+                cursor: move;
+            }
+        </style>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init({
+				gestureConfig: {
+					tap: true, //默认为true
+					
+					longtap: true, //默认为false
+					swipe: true, //默认为true
+					drag: true, //默认为true
+					hold: false, //默认为false，不监听
+					release: false //默认为false，不监听
+				}
+			});
+			mui.plusReady(function() {
+				mui.getJSON('http://www.kuzhandian.com/index.php?m=content&c=index&a=ajax_index', {
+					category: 'news'
+				}, function(data) {
+					mui.toast(111)
+				});
+
 			});
 
-		})
-	</script>
-</body>
+			mui(".mui-table-view").on('longtap', ".mui-table-view-cell", function(e) {
+				
+				var html = [];
+				html='<i id="muclose" class="mui-ext-close-ico fa fa-times-circle-o"></i>'
+				this.insertAdjacentHTML('beforeend',html);
+				mui.toast('触发长按');
+			});
+
+			mui(".mui-table-view li").on('tap', 'a', function() {
+				//获取id
+				mui.toast('点击');
+			});
+			//图标关闭按钮操作
+			mui(".mui-table-view li").on('tap', '.fa-times-circle-o', function() {
+				this.parentElement.remove();
+				mui.toast('2222');
+			});
+			
+			//拖动浮标
+			var div = document.getElementById('touch');
+            var viewWidth = window.screen.width;
+            var viewHeight = window.screen.height;
+            var divWidth = parseInt(div.style.width);
+            var divHeight = parseInt(div.style.height);
+            div.addEventListener('touchmove', function(event) {
+                event.preventDefault(); //阻止其他事件
+                // 如果这个元素的位置内只有一个手指的话
+                if(event.targetTouches.length == 1) {
+                    var touch = event.targetTouches[0]; // 把元素放在手指所在的位置
+                    var tempWidth = touch.pageX;//存储x坐标
+                    var tempHeigth = touch.pageY;//存储Y坐标
+                    if((touch.pageX + divWidth) > viewWidth) {//超越右边界
+                        tempWidth = viewWidth - divWidth/2;
+                    }
+                    if((touch.pageY + divHeight) > viewHeight) {//超越下边界
+                        tempHeigth = viewHeight - divHeight;
+                    }
+                    if((touch.pageX - divWidth)<0){//超越左边界
+                        tempWidth=divWidth/2;
+                    }
+                    if((touch.pageY - divHeight)<0){//超越上边界
+                        tempHeigth=divHeight/2;
+                    }
+                    div.style.left = tempWidth + 'px';
+                    div.style.top = tempHeigth + 'px';
+                    div.style.background = "";
+                }
+            }, false);
+		</script>
+	</body>
 
 </html>

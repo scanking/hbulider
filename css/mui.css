@@ -2363,7 +2363,7 @@ input[type='submit'].mui-active:enabled,
 
 .mui-grid-view.mui-grid-9 .mui-table-view-cell {
 	margin: 0;
-	padding: 11px 15px;
+	padding: 0 15px;
 	vertical-align: top;
 	border-right: 1px solid #eee;
 	border-bottom: 1px solid #eee;
@@ -4748,3 +4748,5 @@ body>.mui-progressbar {
 	height: 100%;
 	border: 0;
 }
+
+.mui-ext-close-ico{z-index:999;position:absolute;top:0px;right:10px;height:10px;width:10px;display:block;}

@@ -4,9 +4,12 @@
       "plus/audio.html",
       "plus/accelerometer.html",
       "plus/barcode.html",
-      "about.html"
+      "about.html",
+      "home.html"
     ],
-    "resources": []
+    "resources": [
+      "home.html"
+    ]
   },
   "plus/barcode.html": {
     "refer": [
