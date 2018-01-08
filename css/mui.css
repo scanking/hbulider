@@ -4749,4 +4749,33 @@ body>.mui-progressbar {
 	border: 0;
 }
 
-.mui-ext-close-ico{z-index:999;position:absolute;top:0px;right:10px;height:10px;width:10px;display:block;}
+.mui-ext-close-ico {
+	z-index: 999;
+	position: absolute;
+	top: 0px;
+	right: 10px;
+	height: 10px;
+	width: 10px;
+	display: block;
+}
+
+.i-pendant {
+	width: 3.5rem;
+	height: 3.5rem;
+	border-radius: 50%;
+	background: #f00;
+	position: fixed;
+	right: 10px;
+	top: 20%;
+	z-index: 90;
+	transition-property: right;
+	transition-timing-function: ease-in-out;
+	line-height: 3.5rem;
+	background-color: #959595;
+	overflow: hidden;
+	cursor: move;
+}
+
+.i-pendant img {
+	width: 100%;
+}
