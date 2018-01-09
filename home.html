@@ -7,13 +7,40 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="css/mui.css" rel="stylesheet" />
 		<link href="css/font-awesome.min.css" rel="stylesheet" />
+		<script type="text/javascript" src="js/common.js"></script>
 	</head>
-
+<script type="text/javascript" charset="utf-8">
+var ws=null,wp=null,wo=null;
+// H5 plus事件处理
+function plusReady(){
+	ws=plus.webview.currentWebview();
+	wo=ws.opener();
+	wp=plus.webview.create('webview_new.html','webview_new.html',{scrollIndicator:'none',scalable:false,popGesture:'none'},{preate:true});
+	wp.addEventListener('close',function(){
+		wp=null;
+	},false);
+}
+if(window.plus){
+	plusReady();
+}else{
+	document.addEventListener('plusready',plusReady,false);
+}
+// 动画窗口
+function animateWindow(type){
+	wp||(wp=plus.webview.create('webview_new.html','webview_new.html',{scrollIndicator:'none',scalable:false,popGesture:'none'},{preate:true}));
+	wp.show(type);
+}
+// 关闭窗口
+var _back=window.back;
+function preateBack(){
+	wp&&(wp.close(),wp=null);
+	_back();
+}
+window.back=preateBack;
+		</script>
 	<body>
 		<div id="#body">
-			<div id="touch" style="width: 50px; height: 50px; position: absolute;">
-				<img id="simple-menu" src="images/search.png" style="width: 50px; height: 50px;" />
-			</div>
+			
 			<ul class="mui-table-view mui-grid-view mui-grid-9">
 				<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3" style="position: relative;">
 					<a href="#">
@@ -44,14 +71,16 @@
 			</ul>
 		</div>
 		
-		<div class="i-pendant" id="pendant"><img src="img/caidan_nav.png"></div>
-		<ul id="new_menu">
-
-		</ul>
-		<script src="js/tuodong.js"></script>
+	<div class="i-pendant" id="pendant" onclick="animateWindow('pop-in')"><img src="img/caidan_nav.png"></div>
+	
+	<ul id="new_menu"></ul>
+	<script type="text/javascript" src="js/immersed.js" ></script>
+	<script src="js/tuodong.js"></script>
 		<script src="js/mui.min.js"></script>
 		<script type="text/javascript">
 			ball_animate('pendant', 'new_menu');
+			
+			
 			mui.init({
 				gestureConfig: {
 					tap: true, //默认为true
@@ -63,10 +92,14 @@
 					release: false //默认为false，不监听
 				}
 			});
+		
 			mui.plusReady(function() {
 				mui.getJSON('http://www.kuzhandian.com/index.php?m=content&c=index&a=ajax_index', {
 					category: 'news'
 				}, function(data) {
+					var html=[];
+					html.push('<div class="new">99999</div>');
+					mui("#body").innerHTML = html;
 					mui.toast(111)
 				});
 
@@ -88,6 +121,8 @@
 				this.parentElement.remove();
 				mui.toast('2222');
 			});
+			
+		
 		</script>
 	</body>
 
