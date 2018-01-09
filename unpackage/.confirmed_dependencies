@@ -16,5 +16,12 @@
       "plus/barcode_scan.html"
     ],
     "resources": []
+  },
+  "home.html": {
+    "refer": [
+      "plus/webview_new.html",
+      "plus/webview_mask_side.html"
+    ],
+    "resources": []
   }
 }

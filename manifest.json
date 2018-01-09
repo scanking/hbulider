@@ -1410,6 +1410,14 @@
 					"plus/nativeobj_animation.html"
 				],
 				"priority": 15
+			},
+			"home.html": {
+				"resources": [],
+				"refer": [
+					"plus/webview_new.html",
+					"plus/webview_mask_side.html"
+				],
+				"priority": 0
 			}
 		},
 		"idle": {
