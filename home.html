@@ -9,135 +9,115 @@
 		<link href="css/font-awesome.min.css" rel="stylesheet" />
 		<script type="text/javascript" src="js/common.js"></script>
 	</head>
-	<script type="text/javascript" charset="utf-8">
-		var ws = null,
-			wc = null;
-		// 扩展API加载完毕，现在可以正常调用扩展API 
-		function plusReady() {
-			ws = plus.webview.currentWebview();
-			// 用户点击后
-			ws.addEventListener("maskClick", function() {
-				wc.close("auto");
-			}, false);
-		}
-		// 判断扩展API是否准备，否则监听"plusready"事件
-		if(window.plus) {
-			plusReady();
-		} else {
-			document.addEventListener("plusready", plusReady, false);
-		}
-		// 显示侧滑页面
-		function showSide() {
-			// 防止快速点击可能导致多次创建
-			if(wc) {
-				return;
-			}
-			// 开启遮罩
-			ws.setStyle({
-				mask: "rgba(0,0,0,0.5)"
-			});
-			// 创建侧滑页面
-			wc = plus.webview.create("plus/webview_mask_side.html", "side", {
-				left: "30%",
-				width: "70%",
-				popGesture: "none"
-			});
-			// 侧滑页面关闭后关闭遮罩
-			wc.addEventListener('close', function() {
-				ws.setStyle({
-					mask: "none"
-				});
-				wc = null;
-			}, false);
-			// 侧滑页面加载后显示（避免白屏）
-			wc.addEventListener("loaded", function() {
-				wc.show("slide-in-right", 200);
-			}, false);
-		}
-	</script>
 
 	<body>
-		<div id="#body">
-			<ul class="mui-table-view mui-grid-view mui-grid-9">
-				<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3" style="position: relative;">
-					<a href="#">
-						<span class="mui-icon"><img src="icon.png"/></span>
-						<div class="mui-media-body">aaa1</div>
-					</a>
+		<div class="mui-off-canvas-wrap mui-draggable">
+			<!-- 菜单容器 -->
+			<aside class="mui-off-canvas-left mui-slide-in">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<!-- 菜单具体展示内容 -->
+						222
+						<div>
+				</div>
+			</aside>
+			<!-- 主页面容器 -->
+			<div class="mui-inner-wrap">
 
-				</li>
-				<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
-					<a href="#">
-						<span class="mui-icon"><img src="icon.png"/></span>
-						<div class="mui-media-body">aaa2</div>
-					</a>
-				</li>
-				<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
-					<a href="#">
-						<span class="mui-icon"><img src="icon.png"/></span>
-						<div class="mui-media-body">aaa3</div>
-					</a>
-				</li>
-				<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
-					<a href="#">
-						<span class="mui-icon"><img src="icon.png"/></span>
-						<div class="mui-media-body">aaa4</div>
-					</a>
-				</li>
+				<div class="mui-content mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<div id="#body">
+							<ul class="mui-table-view mui-grid-view mui-grid-9">
+								<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3" style="position: relative;">
+									<a href="#">
+										<span class="mui-icon"><img src="icon.png"/></span>
+										<div class="mui-media-body">aaa1</div>
+									</a>
 
-			</ul>
-		</div>
+								</li>
+								<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+									<a href="#">
+										<span class="mui-icon"><img src="icon.png"/></span>
+										<div class="mui-media-body">aaa2</div>
+									</a>
+								</li>
+								<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+									<a href="#">
+										<span class="mui-icon"><img src="icon.png"/></span>
+										<div class="mui-media-body">aaa3</div>
+									</a>
+								</li>
+								<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+									<a href="#">
+										<span class="mui-icon"><img src="icon.png"/></span>
+										<div class="mui-media-body">aaa4</div>
+									</a>
+								</li>
 
-		<div class="i-pendant" id="pendant" onclick="showSide()"><img src="img/caidan_nav.png"></div>
+							</ul>
+						</div>
 
-		<ul id="new_menu"></ul>
-		<script type="text/javascript" src="js/immersed.js"></script>
-		<script src="js/tuodong.js"></script>
-		<script src="js/mui.min.js"></script>
-		<script type="text/javascript">
-			ball_animate('pendant', 'new_menu');
+						<div class="i-pendant" id="pendant"><img src="img/caidan_nav.png"></div>
 
-			mui.init({
-				gestureConfig: {
-					tap: true, //默认为true
+					</div>
+				</div>
+			</div>
+			</div>
 
-					longtap: true, //默认为false
-					swipe: true, //默认为true
-					drag: true, //默认为true
-					hold: false, //默认为false，不监听
-					release: false //默认为false，不监听
-				}
-			});
+			<script type="text/javascript" src="js/immersed.js"></script>
+			<script src="js/tuodong.js"></script>
+			<script src="js/mui.min.js"></script>
+			<script type="text/javascript">
+				ball_animate('pendant');
 
-			mui.plusReady(function() {
-				mui.getJSON('http://www.kuzhandian.com/index.php?m=content&c=index&a=ajax_index', {
-					category: 'news'
-				}, function(data) {
-					var html = [];
-					html.push('<div class="new">99999</div>');
-					mui("#body").innerHTML = html;
-					mui.toast(111)
+				mui.init({
+					gestureConfig: {
+						tap: true, //默认为true
+
+						longtap: true, //默认为false
+						swipe: true, //默认为true
+						drag: true, //默认为true
+						hold: false, //默认为false，不监听
+						release: false //默认为false，不监听
+					}
 				});
 
-			});
+				mui.plusReady(function() {
+					mui.getJSON('http://www.kuzhandian.com/index.php?m=content&c=index&a=ajax_index', {
+						category: 'news'
+					}, function(data) {
+						var html = [];
+						html.push('<div class="new">99999</div>');
+						mui("#body").innerHTML = html;
+						mui.toast(111)
+					});
 
-			mui(".mui-table-view").on('longtap', ".mui-table-view-cell", function(e) {
+				});
 
-				var html = '<i id="muclose" class="mui-ext-close-ico fa fa-times-circle-o"></i>'
-				this.insertAdjacentHTML('beforeend', html);
-				mui.toast('触发长按');
-			});
+				var btn = document.getElementById("pendant");
+				//监听点击事件
+				btn.addEventListener("tap", function() {
+					mui('.mui-off-canvas-wrap').offCanvas('show');
 
-			mui(".mui-table-view li").on('tap', 'a', function() {
-				//获取id
-				mui.toast('点击');
-			});
-			//图标关闭按钮操作
-			mui(".mui-table-view li").on('tap', '.fa-times-circle-o', function() {
-				this.parentElement.remove();
-				mui.toast('2222');
-			});
-		</script>
+				});
+				mui(".mui-table-view").on('longtap', ".mui-table-view-cell", function(e) {
+
+					var html = '<i id="muclose" class="mui-ext-close-ico fa fa-times-circle-o"></i>'
+					this.insertAdjacentHTML('beforeend', html);
+					mui.toast('触发长按');
+				});
+
+				mui(".mui-table-view li").on('tap', '', function() {
+					//获取id
+					mui.toast('点击333');
+				});
+
+				//图标关闭按钮操作
+				mui(".mui-table-view li").on('tap', '.fa-times-circle-o', function() {
+					this.parentElement.remove();
+					mui.toast('2222');
+				});
+			</script>
 	</body>
 
 </html>

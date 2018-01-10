@@ -1,4 +1,4 @@
-function ball_animate(obj0, obj1) {
+function ball_animate(obj0) {
 	//        tween函数
 	var Tween = {
 		bounceIn: function(t, b, c, d) { //弹球减振（弹球渐出）
@@ -18,14 +18,14 @@ function ball_animate(obj0, obj1) {
 	}
 
 	var pendant = document.getElementById(obj0) || document.getElementsByClassName(obj0)[0],
-		menu = document.getElementById(obj1) || document.getElementsByClassName(obj1)[0],
+		
 		posX = parseInt(pendant.offsetLeft), //初试位置
 		posY = parseInt(pendant.offsetTop),
 		pW = pendant.clientWidth, //小球自身宽度
 		pH = pendant.clientHeight, //小球自身高度
 		screenWidth = document.documentElement.clientWidth, //设备宽度
 		screenHeight = document.documentElement.clientHeight, //设备高度
-		mW = menu.clientWidth, //菜单栏自身宽度
+		
 		isBounce = false, //记录是否正在执行小球吸附弹性动画
 		ofX, //touchstart的x位置
 		ofY, //touchstart的y位置
@@ -42,12 +42,11 @@ function ball_animate(obj0, obj1) {
 		startX, //记录小球初始位置
 		startY;
 
-	menu.style.webkitTransitionDuration = '0s';
+	
 	get_storage(); 
 	pendant.style.right = startX + 'px';
 	pendant.style.top = startY + 'px';
-	menu.style.top = startY + 'px';
-	menu.style.right = isL ? screenWidth + 'px' : -mW + 'px';
+	
 
 	//        按下
 	pendant.addEventListener('touchstart', function(event) {
@@ -122,11 +121,7 @@ function ball_animate(obj0, obj1) {
 				isBounce = false;
 				//                    变换菜单栏位置
 				pendant.style.webkitTransitionDuration = '0s';
-				menu.style.webkitTransitionDuration = '0s';
 				pendant.style.right = isL ? (screenWidth - pW + 'px') : '0px';
-				menu.style.right = isL ? (screenWidth + 'px') : (-mW + 'px');
-				//                    菜单栏顶部位置
-				menu.style.top = pendant.offsetTop + 'px';
 			}
 			
 			pendant.style.left = Tween.bounceOut(t, b, c, d)  + 'px';

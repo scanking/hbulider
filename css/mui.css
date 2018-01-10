@@ -773,9 +773,9 @@ p {
 	bottom: 0;
 	visibility: hidden;
 	box-sizing: content-box;
-	width: 70%;
+	width: 50%;
 	min-height: 100%;
-	background: #333;
+	background: #00dea3;
 	-webkit-overflow-scrolling: touch;
 }
 
@@ -794,12 +794,12 @@ p {
 }
 
 .mui-off-canvas-wrap:not(.mui-slide-in).mui-scalable {
-	background-color: #333;
+	background-color: #00dea3;
 }
 
 .mui-off-canvas-wrap:not(.mui-slide-in).mui-scalable>.mui-off-canvas-left,
 .mui-off-canvas-wrap:not(.mui-slide-in).mui-scalable>.mui-off-canvas-right {
-	width: 80%;
+	width: 60%;
 	-webkit-transform: scale(.8);
 	transform: scale(.8);
 	opacity: .1;
